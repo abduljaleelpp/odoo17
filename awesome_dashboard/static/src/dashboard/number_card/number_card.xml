@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+    <t t-name="awesome_dashboard.NumberCard" owl="1">
+        <div class="text-center position-relative">
+            <span class ="number-card-title" t-if="props.title">
+                <span t-esc="props.title"/>
+                <br/>
+            </span>
+            <!-- <span class="fs-1 fw-bold text-success" 
+                  t-esc="props.displayMillions ? formatNumberUpToMillions(props.value) : formatNumber(props.value)"/> -->
+            <span class="fs-1 fw-bold text-success" 
+                  t-esc="formatNumber(props.value)"/>
+            <!-- Add the Sold label if isSold is true -->
+            <t t-if="props.isSold">
+                <div t-att-class="'sold-label'" t-att-data-text-length="soldLabelTextLength">Sold</div>
+            </t>
+            <!-- Add the Available label only if showAvailableLabel is true -->
+            <t t-if="props.showAvailableLabel">
+                <div t-att-class="'available-label'" t-att-data-text-length="availableLabelTextLength">Available</div>
+            </t>
+            <t t-if="props.showTotalLabel">
+                <div t-att-class="'total-label'" t-att-data-text-length="totalLabelTextLength">Total</div>
+            </t>
+        </div>
+    </t>
+</templates>

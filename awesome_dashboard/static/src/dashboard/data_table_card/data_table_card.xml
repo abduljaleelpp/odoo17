@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+    <t t-name="awesome_dashboard.DataTableCard" owl="1">
+        <div class="data-table-card-title">
+            <t t-esc="props.title"/>
+        </div>
+        <DataTable data="props.values" headers= "props.headers" isSold ="props.isSold" label="''" weightKey="props.weightKey" rowColorConfig="props.rowColorConfig" config="props.config"/>
+    </t>
+</templates>

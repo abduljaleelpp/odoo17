@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="awesome_dashboard.FilterPanelAvailable">
+        <div class="container">
+            <div class="row mb-2">
+                <div class="col-md-4">
+                    <select id="projectFilter" name="projectFilter" class="form-select" t-att-value="props.filters.project" t-on-change="onProjectChange">
+                        <option value="">All Projects</option>
+                        <t t-foreach="props.filterOptions.projects" t-as="project" t-key="project.value">
+                            <option t-att-value="project.value"><t t-esc="project.formattedValue"/></option>
+                        </t>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <select id="unitTypeFilter" name="unitTypeFilter" class="form-select" t-att-value="props.filters.unitType" t-on-change="onUnitTypeChange">
+                        <option value="">All Unit Types</option>
+                        <t t-foreach="props.filterOptions.unitTypes" t-as="unittype" t-key="unittype.value">
+                            <option t-att-value="unittype.value"><t t-esc="unittype.formattedValue"/></option>
+                        </t>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <select id="stateFilter" name="stateFilter" class="form-select" t-att-value="props.filters.state" t-on-change="onStateChange">
+                        <option value="">All States</option>
+                        <t t-foreach="props.filterOptions.states" t-as="state" t-key="state.value">
+                            <option t-att-value="state.value"><t t-esc="state.formattedValue"/></option>
+                        </t> 
+                    </select> 
+                </div>
+                <div class="col-md-1 d-flex align-items-center">
+                    <button t-on-click="resetFilters">Reset</button>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>

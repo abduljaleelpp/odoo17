@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="awesome_dashboard.DataTable">
+        <div class="table-responsive">
+            <t t-if="props.config.enablePagination">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <button class="btn btn-sm btn-secondary" t-on-click="goToPreviousPage" t-att-disabled="state.currentPage === 1">
+                        Previous
+                    </button>
+                    <t t-if="state.totalPages > 1">
+                        <span>Page <t t-esc="state.currentPage"/> of <t t-esc="state.totalPages"/>/ <t t-esc="state.unitTypeData.length"/></span>
+                    </t>
+                    <t t-else="">
+                        <span>Page 1 of <t t-esc="state.unitTypeData.length"/>/ <t t-esc="state.unitTypeData.length"/></span>
+                    </t>
+                    <button class="btn btn-sm btn-secondary" t-on-click="goToNextPage" t-att-disabled="state.currentPage === state.totalPages">
+                        Next
+                    </button>
+                </div>
+            </t>
+            <table class="table table-sm table-striped table-bordered">
+                <thead t-att-class="props.isSold ? 'table-green' : 'table-dark'">
+                    <tr>
+                        <t t-foreach="props.headers" t-as="header" t-key="header_index">
+                            <th class="text-center" t-esc="header"/>
+                        </t>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr t-foreach="paginatedData" t-as="row" t-key="row_index" t-att-class="getRowClass(row)">
+                        <td class="text-center" t-foreach="state.headerKeys" t-as="key" t-key="key_index">
+                            <t t-if="state.columnTypes[key] === 'string'">
+                                <span t-esc="row[key]"/>
+                            </t>
+                            <t t-else="">
+                                <t t-set="header" t-value="props.headers[key_index]"/>
+                                <t t-if="header.toLowerCase().includes('Count')">
+                                    <span t-esc="formatInteger(row[key])"/>
+                                </t>
+                                <t t-else="">
+                                    <span t-esc="formatNumber(row[key])"/>
+                                </t>
+                            </t>
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot t-att-class="props.isSold ? 'table-green' : 'table-dark'">
+                    <tr>
+                        <t t-foreach="state.headerKeys" t-as="key" t-key="key_index">
+                            <td class="text-center fw-bold">
+                                <t t-if="key_index === 0">
+                                    Total
+                                </t>
+                                <t t-elif="state.columnTypes[key] === 'number'">
+                                    <t t-set="header" t-value="props.headers[key_index]"/>
+                                    <t t-if="header.toLowerCase().includes('Count')">
+                                        <t t-esc="formatInteger(state.totals[key])"/>
+                                    </t>
+                                    <t t-elif="header.toLowerCase().includes('Sum') or header.toLowerCase().includes('Total')">
+                                        <t t-esc="formatNumber(state.totals[key])"/>
+                                    </t>
+                                    <t t-elif="header.toLowerCase().includes('average')">
+                                        <t t-esc="formatNumber(state.averages[key])"/>
+                                    </t>
+                                    <t t-elif="header.includes('Min')">
+                                        <t t-esc="formatNumber(state.minimums[key])"/>
+                                    </t>
+                                    <t t-elif="header.toLowerCase().includes('max')">
+                                        <t t-esc="formatNumber(state.maximums[key])"/>
+                                    </t>
+                                    <t t-elif="header.toLowerCase().includes('percentage')">
+                                        <t t-esc="formatNumber(state.totals[key]) > 100 ? formatNumber(100) : formatNumber(state.totals[key])"/>
+                                    </t>
+                                    <t t-else="">
+                                        <t t-esc="formatNumber(state.totals[key])"/>
+                                    </t>
+                                </t>
+                                <t t-else="">
+                                    <span/>
+                                </t>
+                            </td>
+                        </t>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </t>
+</templates>

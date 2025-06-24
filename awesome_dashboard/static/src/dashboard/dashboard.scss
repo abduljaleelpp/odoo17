@@ -1,0 +1,209 @@
+.o_dashboard {
+    background-color: gray;
+    overflow: auto;
+}
+.btn-secondary {
+    background-color: #6c757d; /* Default Bootstrap secondary color */
+    border-color: #6c757d;
+}
+
+.form-select, .btn {
+    height: clamp(32px, 5vw, 36px); // Responsive height
+    font-size: clamp(0.75rem, 2.5vw, 0.875rem);
+
+    @media (max-width: 576px) {
+        height: 32px;
+        font-size: 0.75rem;
+    }
+}
+.number-card-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 120px;
+
+    @media (max-width: 576px) {
+        min-height: 80px;
+    }
+}
+.number-card-title {
+    font-size: clamp(0.75rem, 2.5vw, 1rem); // Responsive font size
+    text-align: center;
+    padding: 0.25rem 0.5rem;
+    margin-bottom: 0.25rem;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    @media (max-width: 576px) {
+        font-size: 0.7rem;
+        padding: 0.2rem 0.4rem;
+    }
+}
+.number-card-value {
+    font-size: clamp(1rem, 3.5vw, 1.5rem); // Responsive font size
+    font-weight: 700;
+    text-align: center;
+    padding: 0.5rem;
+    width: 100%;
+
+    @media (max-width: 576px) {
+        font-size: 0.9rem;
+        padding: 0.4rem;
+    }
+}
+.sold-label, .available-label, .total-label {
+    --sold-label-size: 5rem;
+    --sold-label-height: 1.75rem;
+    --sold-label-font-size: 0.875rem;
+    --sold-label-shadow-distance: 0.125rem;
+    --sold-label-shadow-blur: 0.25rem;
+
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 7.5rem;
+    height: var(--sold-label-height);
+    z-index: 1;
+
+    color: white;
+    font-size: var(--sold-label-font-size);
+    line-height: var(--sold-label-height);
+    font-weight: 700;
+    font-family: 'Lato', sans-serif;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    text-transform: uppercase;
+    text-align: center;
+    box-shadow: 0 var(--sold-label-shadow-distance) var(--sold-label-shadow-blur) rgba(0, 0, 0, 0.1);
+    transform: rotate(45deg);
+    transform-origin: top right;
+    pointer-events: none;
+    user-select: none;
+
+    top: 3.05rem;
+    right: -2.25rem;
+
+    clip-path: polygon(
+        1.7rem 0,                  /* Top-left cut start */
+        0 1.7rem,                  /* Top-left cut end */
+        0 100%,                  /* Bottom-left (straight down) */
+        100% 100%,               /* Bottom-right (straight across) */
+        100% 1.7rem,              /* Top-right cut start */
+        calc(100% - 1.7rem) 0      /* Top-right cut end */
+    );
+
+    &[data-text-length="long"] {
+        font-size: 0.5rem;
+    }
+    &[data-text-length="medium"] {
+        font-size: 0.3rem;
+    }
+}
+
+/* Specific styles for sold-label (green) */
+.sold-label {
+    background-color: #27614a; /* Green background */
+}
+
+/* Specific styles for available-label (black) */
+.available-label {
+    background-color: #212529; /* Black background */
+}
+
+/* Specific styles for total-label (blue) */
+.total-label {
+    background-color: #fd7e14;
+    // background-color: #005566; /* Bootstrap's primary color (blue) */
+}
+.table-green {
+    background-color: #27614a; /* Bootstrap's green color (you can adjust to any shade of green) */
+    color: #fff; /* White text for contrast */
+}
+.table-black {
+    background-color: #212529; /* Bootstrap's black color */
+    color: #fff; /* White text for contrast */
+}
+.data-table-card-title {
+    text-align: center;
+    font-weight: bold;
+    font-style: italic;
+    font-size: clamp(0.875rem, 3vw, 1rem);
+
+    @media (max-width: 576px) {
+        font-size: 0.75rem;
+    }
+}
+
+.row-danger {
+    background-color: #dc3545 !important; /* Tailwind red-600, vibrant red */
+    color: #FFFFFF !important; /* White text for contrast */
+}
+.row-danger td {
+    background-color: inherit !important;
+    color: inherit !important;
+}
+.row-medium {
+    background-color: #fd7e14 !important; /* Tailwind red-600, vibrant red */
+    color: #FFFFFF !important; /* White text for contrast */
+}
+.row-medium td {
+    background-color: inherit !important;
+    color: inherit !important;
+}
+.row-low {
+    background-color: #27614a !important; /* Tailwind green-600, vibrant green */
+    color: #FFFFFF !important; /* White text for contrast */
+}
+.row-low td {
+    background-color: inherit !important;
+    color: inherit !important;
+}
+.color-block {
+    display: inline-block;
+    width: 18px; /* Adjust size as needed */
+    height: 12px; /* Adjust size as needed */
+    margin-right: 2px; /* Small margin to separate from text; set to 0 if no gap is desired */
+    vertical-align: middle; /* Align with text */
+    @media (max-width: 576px) {
+        width: 14px;
+        height: 10px;
+    }
+}
+.legend-items {
+    gap: 16px; /* Adjust the value for desired spacing (e.g., 16px for consistent spacing) */
+    @media (max-width: 576px) {
+        gap: 8px;
+    }
+}
+.pie-chart-container {
+    height: 300px; // Fixed height for the container
+    max-height: 300px; // Prevent growing beyond this
+    overflow: hidden; // Prevent scrolling within the container
+    .pie-chart-inner {
+        height: 100%; // Fill the fixed-height container
+        max-height: 300px;
+        overflow: hidden;
+        canvas {
+            width: 100% !important;
+            height: 100% !important;
+            max-height: 300px !important;
+        }
+    }
+    @media (max-width: 768px) {
+        height: 200px;
+        max-height: 200px;
+        .pie-chart-inner {
+            max-height: 200px;
+            canvas {
+                max-height: 200px !important;
+            }
+        }
+    }
+}

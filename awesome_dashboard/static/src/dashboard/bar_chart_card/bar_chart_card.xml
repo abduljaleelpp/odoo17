@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+    <t t-name="awesome_dashboard.BarChartCard" owl="1">
+        <div class="data-table-card-title">
+            <t t-esc="props.title"/>    
+        </div>
+        <BarChart data="props.values" label="''" yAxisLabel="props.yAxisLabel" xAxisLabel="props.xAxisLabel" displayMillions="props.displayMillions" indexAxis="props.indexAxis" />
+
+    </t>
+</templates>

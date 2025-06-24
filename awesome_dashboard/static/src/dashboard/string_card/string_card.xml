@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+    <t t-name="awesome_dashboard.StringCard" owl="1">
+    <div class="text-center position-relative">
+                <div t-att-class="props.isSold ? 'table-green':'table-black'" style=" border-radius: 12px; padding: 8px 16px; margin: 8px;">
+                    <t t-if="props.title">
+                        <t t-esc="props.title"/>
+                    </t>
+                </div>
+    </div>
+    </t>
+</templates>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="awesome_dashboard.AwesomeDashboard">
+<!--         <t t-if="!statistics.isReady or !filterOptions.isReady">
+            <div class="text-center">Loading...</div>
+        </t> -->
+
+            <t t-if="statistics.isReady and filterOptions.isReady">
+                <FilterPanel filters="filters" filterOptions="filterOptions" onFilterChange="onFilterChange" onResetFilters="resetFilters"/>
+            </t>
+        <Layout display="display" className="'o_dashboard h-100'">
+
+            <div class="d-flex flex-wrap" t-if="statistics.isReady">
+                <t t-foreach="items" t-as="item" t-key="item.id">
+                    <DashboardItem size="item.size || 1">
+                        <t t-set="itemProp" t-value="item.props ? item.props(statistics) : {'data': statistics}"/>
+                        <t t-component="item.Component" t-props="itemProp" />
+                    </DashboardItem>
+                </t>
+            </div>
+        </Layout>
+    </t>
+</templates>

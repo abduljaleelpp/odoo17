@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+    <t t-name="awesome_dashboard.DashboardItem">
+        <div class="card m-0 border-dark" t-attf-class="col-{{props.size}}  ">
+            <div class="card-body">
+                <t t-slot="default"/>
+            </div>
+        </div>
+    </t>
+</templates>
+<!-- t-attf-style="max-height: {{props.height}}rem;" -->

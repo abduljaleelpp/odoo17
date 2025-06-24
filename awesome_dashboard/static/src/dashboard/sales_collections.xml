@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="awesome_dashboard.SalesCollections">
+        <t t-if="!statistics.isReady or !filterOptions.isReady">
+            <div class="text-center">Loading...</div>
+        </t>
+        <t t-if="statistics.isReady and filterOptions.isReady">
+            <FilterPanel filters="filters" filterOptions="filterOptions" onFilterChange="onFilterChange" onResetFilters="resetFilters"/>
+        </t>
+        <Layout display="display" className="'o_dashboard h-100'">
+            <div class="d-flex flex-wrap" t-if="statistics.isReady">
+                <t t-foreach="items" t-as="item" t-key="item.id">
+                    <DashboardItem size="item.size || 1">
+                        <t t-set="itemProp" t-value="item.props ? item.props(statistics) : {'data': statistics}"/>
+                        <t t-component="item.Component" t-props="itemProp" />
+                        <t t-if="item.id === 'collection_dues'">
+                            <div class="legend-section mt-3">
+                                <div class="legend-items d-flex">
+                                    <span class="legend-item"><span class="color-block" style="background-color: #dc3545;"></span>High: > 30 days</span>
+                                    <span class="legend-item"><span class="color-block" style="background-color: #fd7e14;"></span>Medium: 16-30 days</span>
+                                    <span class="legend-item"><span class="color-block" style="background-color: #27614a;"></span>Low: 0-15 days</span>
+                                </div>
+                            </div>
+                        </t>
+                        
+                    </DashboardItem>
+                </t>
+            </div>
+        </Layout>
+    </t>
+</templates>

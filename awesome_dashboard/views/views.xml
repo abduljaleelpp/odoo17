@@ -1,0 +1,39 @@
+<odoo>
+    <record id="dashboard" model="ir.actions.client">
+        <field name="name">Awesome Dashboard</field>
+        <field name="tag">awesome_dashboard.dashboard</field>
+    </record>
+    <record id="active_deals_count" model="ir.actions.client">
+        <field name="name">Active Deals Count</field>
+        <field name="tag">awesome_dashboard.active_deals_count</field>
+    </record>
+    <record id="units_inventory_report" model="ir.actions.client">
+        <field name="name">Units Inventory Report</field>
+        <field name="tag">awesome_dashboard.units_inventory_report</field>
+    </record>
+    <record id="sales_demographics" model="ir.actions.client">
+        <field name="name">Sales Demographics</field>
+        <field name="tag">awesome_dashboard.sales_demographics</field>
+    </record>
+    <record id="sales_payments" model="ir.actions.client">
+        <field name="name">Sales Payments</field>
+        <field name="tag">awesome_dashboard.sales_payments</field>
+    </record>
+        <record id="sales_collections" model="ir.actions.client">
+        <field name="name">Sales Collections</field>
+        <field name="tag">awesome_dashboard.sales_collections</field>
+    </record>
+    <record id="available_units" model="ir.actions.client">
+        <field name="name">Available Units</field>
+        <field name="tag">awesome_dashboard.available_units</field>
+    </record>
+    <menuitem id="menu_awesome_dashboard_root" web_icon="awesome_dashboard,static/description/icon.png" name="Sale Dashboards" sequence="10" groups="awesome_dashboard.group_sale_dashboard_user"/>
+    <menuitem id="menu_awesome_dashboard" name="Active Deals Sales" parent="menu_awesome_dashboard_root" action="awesome_dashboard.dashboard" sequence="10"/>
+    <menuitem id="menu_active_deals_count" name="Active Deals Count" parent="menu_awesome_dashboard_root" action="awesome_dashboard.active_deals_count" sequence="20"/> 
+    <menuitem id="menu_units_inventory_report" name="Units Inventory Report" parent="menu_awesome_dashboard_root" action="awesome_dashboard.units_inventory_report" sequence="30"/>
+    <menuitem id="menu_available_units" name="Units Availability" parent="menu_awesome_dashboard_root" action="awesome_dashboard.available_units" sequence="40"/>
+    <menuitem id="menu_sales_demographics" name="Sales Demographics" parent="menu_awesome_dashboard_root" action="awesome_dashboard.sales_demographics" sequence="50"/>
+    <menuitem id="menu_sales_payments" name="Sales Payments" parent="menu_awesome_dashboard_root" action="awesome_dashboard.sales_payments" sequence="60"/>
+    <menuitem id="menu_sales_collections" name="Sales Collections" parent="menu_awesome_dashboard_root" action="awesome_dashboard.sales_collections" sequence="70"/>
+
+</odoo>
